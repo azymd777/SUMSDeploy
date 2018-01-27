@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 var bodyparser = require('body-parser')
 var app = express()
 
-app.use(cors)
+app.use(cors())
 app.use(bodyparser.json())
 //app.use(bodyparser.text()) to send text data in the body
 

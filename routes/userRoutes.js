@@ -46,7 +46,7 @@ UserRouter.route('/login')
                 name:user.name
             }
             var token = jwt.encode(payload,'321')
-            res.send(token);
+            res.status(200).send({token})
         }
     }
     res.sendStatus(401)  

@@ -61,7 +61,7 @@ CustomerRouter.route('/')
           },
           active: req.body.active
         }
-        Customer.update({_id: req.params.id}, cust, function(err, raw) {
+        Customer.update({customerid: req.params.id}, cust, function(err, raw) {
             if(err)
             {
                 console.log(err);

@@ -2,7 +2,7 @@ var express = require('express')
 var CustomerTranRouter = express.Router()
 var Custtran = require('../models/custTransaction.js')
 CustomerTranRouter.route('/')
-.get(async (req,res) => { 
+/*.get(async (req,res) => { 
     var customertran = await Custtran.find({},{__v:0},(err,result)=>
     {
         if(err)
@@ -16,7 +16,23 @@ CustomerTranRouter.route('/')
         }
     }
     )  
+}) */
+.get(async (req,res) => { 
+    var customertran = await Custtran.find({},{__v:0})
+    .populate('customerid','name')
+    .exec(function(err, result){
+    if(err)
+    {
+        console.log(err);
+        res.status(500).send("Error While fetching data")
+    }
+    else
+    {
+        res.status(200).send(result)
+    }
+ })
 })
+
 .post((req,res) => {
     var custtrandata = req.body
     var custtran = new Custtran(custtrandata)

@@ -34,7 +34,7 @@ CustomerRouter.route('/')
 
     CustomerRouter.route('/:id')
     .get(async (req,res) => {    
-        var customer = await Customer.findById(req.params.id,{__v:0},(err,result)=>
+        var customer = await Customer.findOne({customerid:req.params.id},{__v:0},(err,result)=>
         {
             if(err)
             {

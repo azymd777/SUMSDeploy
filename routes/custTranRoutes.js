@@ -72,7 +72,7 @@ CustomerTranRouter.route('/:id')
   .post(async (req,res) => { 
     searchdata = req.body
     var customertran = await Custtran.find({createddt:{$gte:searchdata.frmdate , $lte:searchdata.todate}},{__v:0})
-    .populate('customerid','name',null, { customerid: searchdata.customerid})
+    .populate('customerid')
     .exec(function(err, result){
     if(err)
     {
@@ -81,6 +81,9 @@ CustomerTranRouter.route('/:id')
     }
     else
     {
+        result = result.filter(function(tran){
+            return tran.customerid.customerid == searchdata.customerid
+          })
         res.status(200).send(result)
     }
  })

@@ -9,7 +9,7 @@ module.exports = mongoose.model('customer',{
         add2: String,
         pincode: Number
     },
-    createddt: { type: Date, default: Date.now },
+    createddt: { type: Date, default: new Date().toISOString().substring(0,10) },
     active: { type: Boolean, default: true }
 
 })
